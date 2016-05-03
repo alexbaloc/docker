@@ -1,0 +1,20 @@
+openchain:
+  build: openchain/.
+  ports:
+    - "8080:8080"
+  container_name: openchain-server
+  volumes:
+    - ./data:/openchain/Webroot/App_Data
+  restart: always
+
+
+openchain_mono:
+  build: openchain_mono/.
+  ports:
+    - "9090:9090"
+  links:
+    - openchain
+  container_name: openchain-server-mono
+  volumes:
+    - ./data_mono:/openchain/Webroot/App_Data
+  restart: always
